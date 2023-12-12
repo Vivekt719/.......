@@ -1,0 +1,493 @@
+11111 #include <iostream>
+using namespace std;
+
+int main() {
+    int someNumbers[7] = {3, 7, 2, 6, 5, 8, 5 };
+
+    int i = 6;
+
+    do {
+        cout << someNumbers[i] << endl;
+        --i;
+    } while(i >= 0); // Correct the loop condition
+
+    return 0;
+}
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int someNumbers[7] = {1, 1, 2, 3, 5, 8, 5 };
+
+    for (int i = 6; i >= 0; --i) {
+        cout << someNumbers[i] << endl;
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+2222222 #include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+    vector<string> words;
+    string input;
+
+    cout << "Enter words (type ZZZ to stop):" << endl;
+
+    while (true) {
+        cin >> input;
+        if (input == "ZZZ") {
+            break;
+        } else {
+            if (input != "ZZZ") {
+                input[0] = toupper(input[0]); // Convert the first character to uppercase
+                words.push_back(input);
+            }
+        }
+    }
+
+    int size = words.size();
+
+    if (size == 0) {
+        cout << "There is no middle word" << endl;
+    } else if (size % 2 == 1){
+        int middleIndex = size / 2;
+        cout << "The middle word is " << words[middleIndex] << endl;
+    } else {
+        cout << "The two early words are " << words[0] << " " << words[1] << endl; // Add space between the two words
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+33333 
+
+Write function prototypes appropriate to these comments:
+/家*
+* openInputFile
+* \param[in, out]
+* \param[in]
+* \precondition
+* \postcondition
+* \return
+**/
+opens a file for input based on the given filename ifs is the stream to be opened
+filename a string containing the filename ifs is declared in the calling function
+ifs is in a good state for reading data (if successful) bool true if the operation was successful
+* openOutputFile
+opens a file for input based on the given filename
+* \param[in, out]
+ofs is the stream to be opened
+* Iparam[in]
+filename a string containing the filename
+* \precondition
+ofs is declared in the calling function
+* \postcondition
+ofs is in a good state for writing data (if successful)
+* \return
+bool true if the operation was shrcessful
+ま/
+/=8
+* writeFile
+param[in, out]
+Sparam[in]
+\precondition postcondition
+writes the contents of the uniquelordList to an output 
+file stream ofs is the target stream to write uniquewordlist is an unordered_map‹string, int> 
+to be written ofs is declared in the calling function and in good state ofs has recieved the uniqueWordlist and is in a good state (if successful)
+
+
+#include <iostream>
+#include <fstream>
+#include <unordered_map>
+#include <string>
+
+/**
+ * Opens a file for input based on the given filename.
+ * \param[in, out] ifs The stream to be opened.
+ * \param[in] filename A string containing the filename. 
+ * \precondition ifs is declared in the calling function.
+ * \postcondition ifs is in a good state for reading data (if successful).
+ * \return bool True if the operation was successful.
+ */
+bool openInputFile(std::ifstream& ifs, const std::string& filename);
+
+/**
+ * Opens a file for output based on the given filename.
+ * \param[in, out] ofs The stream to be opened.
+ * \param[in] filename A string containing the filename.
+ * \precondition ofs is declared in the calling function.
+ * \postcondition ofs is in a good state for writing data (if successful).
+ * \return bool True if the operation was successful.
+ */
+bool openOutputFile(std::ofstream& ofs, const std::string& filename);
+
+/**
+ * Writes the contents of the uniqueWordList to an output file stream in CSV format.
+ * Each word and its count appear on individual lines with the word and count separated by a comma.
+ * For example:
+ *   four,4
+ *   three,3
+ *   two,2
+ *   one,1
+ * \param[in, out] ofs The target stream to write in CSV format.
+ * \param[in] uniqueWordList An unordered_map<string, int> to be written.
+ * \precondition ofs is declared in the calling function and in good state.
+ * \postcondition ofs has received the uniqueWordList and is in a good state (if successful).
+ */
+void writeCSVFile(std::ofstream& ofs, const std::unordered_map<std::string, int>& uniqueWordList) {
+    for (const auto& entry : uniqueWordList) {
+        ofs << entry.first << "," << entry.second << std::endl;
+    }
+}
+
+int main() {
+    std::ifstream inputFileStream;
+    std::ofstream outputFileStream;
+    std::unordered_map<std::string, int> uniqueWordList;
+
+    if (openInputFile(inputFileStream, "input.txt")) {
+        // Process input and populate uniqueWordList
+        // ...
+
+        if (openOutputFile(outputFileStream, "output.csv")) {
+            writeCSVFile(outputFileStream, uniqueWordList);
+            outputFileStream.close();
+        } else {
+            std::cerr << "Error opening output file." << std::endl;
+        }
+
+        inputFileStream.close();
+    } else {
+        std::cerr << "Error opening input file." << std::endl;
+    }
+
+    return 0;
+}
+
+
+
+
+
+44444
+#include <fstream>
+
+ifstream inputFile;
+
+inputFile.open("input.txt");
+
+if (inputFile.is_open()) {
+    // Read from the file using inputFile
+    // ...
+
+    inputFile.close();
+} else {
+    // Handle the case when the file couldn't be opened
+}
+
+
+
+
+55555 
+
+Write the code to:
+• declare an appropriate file stream variable for output
+• call the openouputFile() function correctly
+• call the writefile() function if openouputFile ( worked
+Assume that the program will always open the file "sample.csv do not change function name
+
+#include <iostream>
+#include <fstream>
+#include <unordered_map>
+#include <string>
+
+bool openOutputFile(std::ofstream& ofs, const std::string& filename);
+
+void writeCSVFile(std::ofstream& ofs, const std::unordered_map<std::string, int>& uniqueWordList) {
+    for (const auto& entry : uniqueWordList) {
+        ofs << entry.first << "," << entry.second << std::endl;
+    }																									
+}
+
+int main() {
+    std::ofstream outputFileStream("sample.csv");
+
+    if (outputFileStream.is_open()) {
+        std::unordered_map<std::string, int> uniqueWordList;
+
+        // ... (populate uniqueWordList with data)
+
+        writeCSVFile(outputFileStream, uniqueWordList);
+
+        outputFileStream.close();
+    } else {
+        std::cerr << "Error opening output file." << std::endl;
+    }
+
+    return 0;
+}
+
+6666666
+
+Write the definition code for the openinputFile() function. Recall the comments for this function:
+* openInputFile
+opens a file for input based on the given filename
+* \param[in,out] ifs is the stream to be opened
+* \param[in]
+filename a string containing the filename
+* \precondition
+ifs is declared in the calling function
+* \postcondition
+ifs is in a good state for reading data (if successful)
+* (return
+bool true if the operation was successful 
+
+
+#include <fstream>
+
+bool openInputFile(std::ifstream& ifs, const std::string& filename) {
+    ifs.open(filename);
+
+    if (ifs.is_open()) {
+        return true;
+    } else {
+        std::cerr << "Error opening input file: " << filename << std::endl;
+        return false;
+    }
+}
+
+
+
+
+
+777777
+
+Write the definition code for the openinputfile) function. Recall the comments for this function:
+* openoutputFile opens a file for input based on the given filenane
+* \paran[in, out]
+ofs is the stream to be opened
+* \param[in]
+filename a strins containing the filename
+• \precondition
+ofs is declaned in the calling function
+• \postcondition
+ofs is in a good state for writing data (if successful)
+* return
+bool true if the operation was successful
+
+
+#include <fstream>
+
+bool openOutputFile(std::ofstream& ofs, const std::string& filename) {
+    ofs.open(filename);
+
+    if (ofs.is_open()) {
+        return true;
+    } else {
+        std::cerr << "Error opening output file: " << filename << std::endl;
+        return false;
+    }
+}
+
+
+
+
+88888888
+
+
+Write the definition code for the openinputFiled function. Recall the comments for this function
+* writerile
+* (param[in,out]
+* \param[in]
+* \precondition
+# \postcondition
+* (return
+writes the contents of the uniquewordlist to an output file stream ofs is the target stream to write uniquewordList is an unordered_map‹string, int> to be written ofs is declared in the calling function and in good state ofs has recieved the uniquelordlist and is in a good state (if successful) nothing
+• The format of the file should be comma separated value (CSV) format.
+* Each word and its count should appear on individual lines with the
+* word and the count separated byla comma.
+* For example:
+* Four, 4.
+*three,3
+* two, 2
+• one, 1
+
+
+#include <fstream>
+#include <unordered_map>
+
+bool openOutputFile(std::ofstream& ofs, const std::string& filename) {
+    ofs.open(filename);
+    if (ofs.is_open()) {
+        return true;
+    } else {
+        std::cerr << "Error opening output file: " << filename << std::endl;
+        return false;
+    }
+}
+
+void writeFile(std::ofstream& ofs, const std::unordered_map<std::string, int>& uniqueWordList) {
+    auto it = uniqueWordList.begin();
+    while (it != uniqueWordList.end()) {
+        ofs << it->first << "," << it->second << std::endl;
+        ++it;
+    }
+}
+
+int main() {
+    std::ofstream outputFileStream;
+    if (openOutputFile(outputFileStream, "output.csv")) {
+        std::unordered_map<std::string, int> uniqueWordList;
+        // Populate uniqueWordList (assume it is filled with data)
+        writeFile(outputFileStream, uniqueWordList);
+        outputFileStream.close();
+    } else {
+        std::cerr << "Error opening output file." << std::endl;
+    }
+    return 0;
+}
+
+
+
+
+#include <fstream>
+#include <unordered_map>
+
+bool openOutputFile(std::ofstream& ofs, const std::string& filename) {
+    ofs.open(filename);
+    if (ofs.is_open()) {
+        return true;
+    } else {
+        std::cerr << "Error opening output file: " << filename << std::endl;
+        return false;
+    }
+}
+
+void writeFile(std::ofstream& ofs, const std::unordered_map<std::string, int>& uniqueWordList) {
+    for (const auto& entry : uniqueWordList) {
+        ofs << entry.first << "," << entry.second << std::endl;
+    }
+}
+
+int main() {
+    std::ofstream outputFileStream;
+    if (openOutputFile(outputFileStream, "output.csv")) {
+        std::unordered_map<std::string, int> uniqueWordList;
+        // Populate uniqueWordList (assume it is filled with data)
+        writeFile(outputFileStream, uniqueWordList);
+        outputFileStream.close();
+    } else {
+        std::cerr << "Error opening output file." << std::endl;
+    }
+    return 0;
+}
+
+
+
+
+
+999999999
+
+#pragma once
+
+
+
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+struct Record {
+    string title;
+    string artist;
+    int year;
+};
+
+class Library {
+public:
+    Library(int splitYear); // Constructor
+    void add(const Record& newRecord); // Function to add a new Record
+    bool writeToFileNamed(const string& fileName); // Function to write to a file
+    // Additional member functions can be declared here
+
+private:
+    int splitYear; // Member variable to store the split year
+    vector<Record> modernRecords; // List for modern Records
+    vector<Record> classicRecords; // List for classic Records
+};
+
+
+
+
+
+101010101010101010101010
+
+#include "Library.h"
+
+Library::Library(int splitYear) : splitYear(splitYear) {
+    // Constructor implementation
+}
+
+void Library::add(const Record& newRecord) {
+    if (newRecord.year >= splitYear) {
+        // Add to the modernRecords list
+        modernRecords.push_back(newRecord);
+    } else {
+        // Add to the classicRecords list
+        classicRecords.push_back(newRecord);
+    }
+}
+
+bool Library::writeToFileNamed(const string& fileName) {
+    ofstream outputFile(fileName);
+
+    if (outputFile.is_open()) {
+        // Write modernRecords to the file
+        for (const auto& record : modernRecords) {
+            outputFile << record.title << "," << record.artist << "," << record.year << endl;
+        }
+
+        // Write classicRecords to the file
+        for (const auto& record : classicRecords) {
+            outputFile << record.title << "," << record.artist << "," << record.year << endl;
+        }
+
+        outputFile.close();
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
